@@ -10,13 +10,13 @@ fi
 
 # Get the process ID of the container
 CONTAINER_NAME=$1
-CONTAINER_PID=$(sudo docker inspect -f '{{.State.Pid}}' $CONTAINER_NAME)
+CONTAINER_PID=$(docker inspect -f '{{.State.Pid}}' $CONTAINER_NAME)
 
 # Get the interface ID of the container's eth0 interface
-CONTAINER_IF=$(sudo nsenter -t $CONTAINER_PID -n ip link show eth0 | grep -oP '(?<=@if)[^: ]+')
+CONTAINER_IF=$(nsenter -t $CONTAINER_PID -n ip link show eth0 | grep -oP '(?<=@if)[^: ]+')
 
 # Get the veth interface name on the host
-VETH_IF=$(sudo grep -l $CONTAINER_IF /sys/class/net/veth*/ifindex | grep -oP veth[^/]+)
+VETH_IF=$(grep -l $CONTAINER_IF /sys/class/net/veth*/ifindex | grep -oP veth[^/]+)
 printf "Container \"$CONTAINER_NAME\" interface: $VETH_IF\n"
 
 # Run tcpdump on the container's veth interface with the provided options and arguments
