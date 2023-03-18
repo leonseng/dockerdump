@@ -9,14 +9,14 @@ To use this script, simply run the following command:
 dockerdump <container> [tcpdump-options]
 ```
 
-Example:
+Examples:
 
 ```
 # by container name
-sudo dockerdump my_container -s 0 -w my_packets.pcap
+sudo dockerdump my_container -s 0 host 10.0.0.1
 
 # by container id
-sudo dockerdump 392faad5b085 -nnv -s 0 -w my_packets_2.pcap
+sudo dockerdump 392faad5b085 -nnv -s 0 port 443 -w my_packets.pcap
 ```
 
 ## Installation
@@ -25,7 +25,7 @@ To install this script, follow these steps:
 
 1. Download the script using curl:
     ```
-    curl -o- https://raw.githubusercontent.com/leonseng/dockerdump/main/dockerdump.sh | sudo tee /usr/local/bin/dockerdump >/dev/null
+    curl -o- https://raw.githubusercontent.com/leonseng/dockerdump/main/dockerdump | sudo tee /usr/local/bin/dockerdump >/dev/null
     ```
 1. Make the script executable:
     ```
