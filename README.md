@@ -1,6 +1,6 @@
 # dockerdump
 
-`dockerdump` provides a simple way to capture packets on the interface of a Docker container using `tcpdump`.
+`dockerdump` makes it easy to capture packets on the interface of a Docker container using `tcpdump`.
 
 ## Usage
 To use this script, simply run the following command:
