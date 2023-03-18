@@ -17,7 +17,7 @@ CONTAINER_IF=$(sudo nsenter -t $CONTAINER_PID -n ip link show eth0 | grep -oP '(
 
 # Get the veth interface name on the host
 VETH_IF=$(sudo grep -l $CONTAINER_IF /sys/class/net/veth*/ifindex | grep -oP veth[^/]+)
-printf "Container \"$CONTAINER_NAME\" interface: $VETH_IF"
+printf "Container \"$CONTAINER_NAME\" interface: $VETH_IF\n"
 
 # Run tcpdump on the container's veth interface with the provided options and arguments
 tcpdump -i "$VETH_IF" "${@:2}"
